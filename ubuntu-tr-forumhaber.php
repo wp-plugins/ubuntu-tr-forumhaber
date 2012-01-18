@@ -3,7 +3,7 @@
 Plugin Name: Forum Haber Ekleyici 
 Plugin URI: http://www.ubuntu-tr.net 
 Description: Forumdaki iletinin sadece URL'sini girerek içeriğini almaya yarayan bir eklenti 
-Version: 1.1.1
+Version: 1.1.2
 Author: İbrahim Altunok 
 Author URI: http://www.ubuntu-tr.net 
 License: GPLv2 
@@ -71,7 +71,7 @@ function utr_forumhaber_js(){
       $("#utr_forumhaber_yukleniyor").show(); 
       var data = { 
         action : 'utr_forumhaber_ayikla', 
-        forumurl : $("#utr_forumhaber_url").val() 
+        utrforumurl : $("#utr_forumhaber_url").val() 
       }; 
       $.get(ajaxurl, data, function(d){ 
         $("#title-prompt-text").hide(); 
@@ -93,13 +93,13 @@ function utr_forumhaber_js(){
 add_action('wp_ajax_utr_forumhaber_ayikla', 'utr_forumhaber_ayikla');
 
 function utr_forumhaber_ayikla() {
-  if(!isset($_GET['forumurl']) || $_GET['forumurl'] == '') die();
+  if(!isset($_GET['utrforumurl']) || $_GET['utrforumurl'] == '') die();
 
   $data = '';
 	
   if(extension_loaded("curl")){
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $_GET['forumurl']);
+    curl_setopt($ch, CURLOPT_URL, $_GET['utrforumurl']);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
     curl_setopt($ch, CURLOPT_HEADER, FALSE);
@@ -108,10 +108,10 @@ function utr_forumhaber_ayikla() {
   }
 
   else {
-    $data = file_get_contents($_GET['forumurl']); 
+    $data = file_get_contents($_GET['utrforumurl']); 
   }
-	
-  preg_match('/msg(\w+)/', $_GET['forumurl'], $msgid);
+
+  preg_match('/msg(\d+)/', $_GET['utrforumurl'], $msgid);
   $msg = $msgid[1];
 	
   preg_match('#<a id="msg' . $msg . '"></a>.*?windowbg.*?>(.*?)<hr class="post_separator" />#si', $data, $div);
@@ -140,13 +140,13 @@ function utr_forumhaber_ayikla() {
   $r2=substr($r2,strpos($r2,">")+1);
   $r2=substr($r2,0,strrpos($r2,"</div>"));
   
-  $r2 = preg_replace('#<a class="codeoperation".*?>[Seç]</a>#si', "", $r2);
+  $r2 = preg_replace('#<div class="codeheader">(.*?)</div>#si', '<div class="codeheader">Kod:</div>', $r2);
 	
   $r2 = $r2 . "<br /><br />Bu ileti <i>".$date."</i> tarihinde " .
     "<a href='http://forum.ubuntu-tr.net/index.php?action=profile;u=" .
     $userid . "'><i>" . $username . "</i></a> " .
     "tarafından yazılmıştır." . 
-    "<br><a href='" . $_GET['forumurl'] . "' target='_blank'>" . 
+    "<br><a href='" . $_GET['utrforumurl'] . "' target='_blank'>" . 
     "İletiyi forumda açmak için tıklayınız »</a>";
 
   $return['ileti'] = $r2;
