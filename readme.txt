@@ -4,7 +4,7 @@ Donate link: http://www.ubuntu-tr.net
 Tags: post, admin, news, ajax, metabox
 Requires at least: 2.0
 Tested up to: 3.3
-Stable tag: 1.1
+Stable tag: 1.1.1
 
 Ubuntu Türkiye forumlarındaki bir iletiyi, sadece bağlantısını kullanarak blogunuza yazı şeklinde ekler.
 
@@ -33,6 +33,10 @@ Hayır, iletiler BBCode'un işlenmiş HTML şekli olarak gelir. Bu işlenmiş HT
 1. `/tags/1.1/screenshot-1.jpeg`
 
 == Changelog ==
+
+= 1.1.1 =
+
+Birkaç küçük düzeltme.
 
 = 1.1 =
 
