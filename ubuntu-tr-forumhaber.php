@@ -3,7 +3,7 @@
 Plugin Name: Forum Haber Ekleyici 
 Plugin URI: http://www.ubuntu-tr.net 
 Description: Forumdaki iletinin sadece URL'sini girerek içeriğini almaya yarayan bir eklenti 
-Version: 1.0 
+Version: 1.1.1
 Author: İbrahim Altunok 
 Author URI: http://www.ubuntu-tr.net 
 License: GPLv2 
@@ -140,7 +140,7 @@ function utr_forumhaber_ayikla() {
   $r2=substr($r2,strpos($r2,">")+1);
   $r2=substr($r2,0,strrpos($r2,"</div>"));
   
-  $r2 = preg_replace('#<a  class="codeoperation".*?>[Seç]</a>#si', "", $r2);
+  $r2 = preg_replace('#<a class="codeoperation".*?>[Seç]</a>#si', "", $r2);
 	
   $r2 = $r2 . "<br /><br />Bu ileti <i>".$date."</i> tarihinde " .
     "<a href='http://forum.ubuntu-tr.net/index.php?action=profile;u=" .
