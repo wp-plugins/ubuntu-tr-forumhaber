@@ -2,9 +2,9 @@
 Contributors: alquirel
 Donate link: http://www.ubuntu-tr.net
 Tags: post, admin, news, ajax, metabox
-Requires at least: 3.0
+Requires at least: 2.0
 Tested up to: 3.3
-Stable tag: 1.0
+Stable tag: 1.1
 
 Ubuntu Türkiye forumlarındaki bir iletiyi, sadece bağlantısını kullanarak blogunuza yazı şeklinde ekler.
 
@@ -30,9 +30,14 @@ Hayır, iletiler BBCode'un işlenmiş HTML şekli olarak gelir. Bu işlenmiş HT
 
 == Screenshots ==
 
-1. `/tags/1.0/screenshot-1.jpeg`
+1. `/tags/1.1/screenshot-1.jpeg`
 
 == Changelog ==
 
+= 1.1 =
+
+WP 3.0 öncesiyle uyumluluk özelliği eklendi.
+
 = 1.0 =
+
 Eklentiye hoşgeldiniz.

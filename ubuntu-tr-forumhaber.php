@@ -11,6 +11,9 @@ License: GPLv2
 
 add_action( 'add_meta_boxes', 'utr_forumhaber_kutu_ekle' );
 
+// backwards compatible (before WP 3.0)
+add_action( 'admin_init', 'utr_forumhaber_kutu_ekle', 1 );
+
 function utr_forumhaber_kutu_ekle() { 
   add_meta_box( 
     'utr_forumhaber_kutu', 
